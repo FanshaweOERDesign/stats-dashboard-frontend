@@ -1,0 +1,21 @@
+export const loadingText = [
+    "Jason is turning on the server...",
+    "Fetching stats...",
+    "Warming up the internet...",
+    "Just a moment...",
+    "Dusting off the database...",
+    "Counting all the views...",
+    "Bribing the server...",
+    "Talking to the data gremlins...",
+    "Loading... but slower just to annoy you...",
+    "Please wait while we make up some numbers...",
+    "Almost there... or are we?",
+    "Calculating infinity...",
+    "Do you have a second?",
+    "Isn't waiting fun?",
+    "Counting backwards from infinity...",
+    "Reticulating splines...",
+    "Loading the flux capacitor...",
+    "Performing some magic...",
+    "Updating the loading screen..."
+];
