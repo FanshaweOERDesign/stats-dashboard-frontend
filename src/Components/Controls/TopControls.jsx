@@ -64,13 +64,14 @@ const TopControls = ({ onApply, setFadeIn }) => {
   const handleApply = async (start = startDate, end = endDate, avgCost = avgTextbookCost) => {
     const formattedStartDate = start ? start.format('YYYY-MM-DD') : null;
     const formattedEndDate = end ? end.format('YYYY-MM-DD') : null;
-
+    
     if (!formattedStartDate || !formattedEndDate) {
       setError("Please select a valid date range.");
       return;
     }
-
+    
     setLocalLoading(true);
+    setProgress(0);
 
     try {
       const response = await fetch('http://localhost:8384/get-stats-id', {
@@ -101,16 +102,11 @@ const TopControls = ({ onApply, setFadeIn }) => {
 
   const listenForProgress = async (clientId, start, end, avgCost) => {
 
-    console.log('Calling get-stats-progress');
-
     const eventSource = new EventSource(`http://localhost:8384/get-stats-progress/${clientId}`);
-
     eventSource.addEventListener('progress', (event) => {
         const data = JSON.parse(event.data);
         const tempProgress = Math.floor(data.progress);
-        if (tempProgress > progress) {
-            setProgress(tempProgress);
-        }
+        setProgress(tempProgress);
     });
 
     eventSource.addEventListener('complete', (event) => {
@@ -216,7 +212,7 @@ const TopControls = ({ onApply, setFadeIn }) => {
         <ModalBody style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", height: "100vh" }}>
           <div style={{width: "300px", backgroundColor: "white", textAlign: "center", padding: "2em" }}>
             <img className='logo' src="../assets/Images/oer_logo.png" alt="OER Logo" />
-            <Typography variant='body1'>Collecting and compiling stats...</Typography>
+            <Typography variant='body1'>Collecting stats...</Typography>
           <ProgressBar completed={progress}/>
           </div>
         </ModalBody>
