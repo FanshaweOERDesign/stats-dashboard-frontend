@@ -181,7 +181,7 @@ const TopControls = ({ onApply, setFadeIn }) => {
             />
           </Box>
         </Box>
-        <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+       {/*} <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <TextField
             label="Average Textbook Cost"
             type="number"
@@ -200,7 +200,7 @@ const TopControls = ({ onApply, setFadeIn }) => {
             onChange={handleSliderChange}
             sx={{ width: '300px' }}
           />
-        </Box>
+        </Box>*/}
         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
           <Button variant="contained" color="primary" onClick={() => handleApply()} disabled={localLoading}>
             Apply
