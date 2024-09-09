@@ -92,7 +92,7 @@ const TopControls = ({ onApply, setFadeIn, faculties = [] }) => {
       });
 
       const clientId = await response.json();
-      console.log("Client ID:", clientId);
+      //console.log("Client ID:", clientId);
 
       listenForProgress(clientId.clientId, start, end, avgCost);
     } catch (error) {
@@ -121,8 +121,6 @@ const TopControls = ({ onApply, setFadeIn, faculties = [] }) => {
 
     eventSource.addEventListener("complete", (event) => {
       const stats = JSON.parse(event.data).data;
-
-      console.log(JSON.parse(event.data).data);
 
       sessionStorage.setItem("cachedStats", JSON.stringify(stats));
       sessionStorage.setItem("cachedStartDate", start.format());

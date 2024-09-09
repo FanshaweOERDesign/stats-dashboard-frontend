@@ -8,7 +8,6 @@ const FacultyStats = ({ statsByFaculty }) => {
     return null;
   }
 
-  // Handle change for the dropdown
   const handleFacultyChange = (event) => {
     setSelectedFaculty(event.target.value);
   };
@@ -22,8 +21,6 @@ const FacultyStats = ({ statsByFaculty }) => {
       <Typography variant="h5" sx={{ textAlign: "center" }}>
         Statistics by Faculty
       </Typography>
-
-      {/* Dropdown for selecting faculty */}
       <FormControl fullWidth sx={{ mt: 3 }}>
         <InputLabel>Select Faculty</InputLabel>
         <Select value={selectedFaculty} onChange={handleFacultyChange}>
