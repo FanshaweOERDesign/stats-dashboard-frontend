@@ -6,6 +6,7 @@ import TopControls from "../../Components/Controls/TopControls"
 import BottomControls from "../../Components/Controls/BottomControls";
 import ReferrersList from "../../Components/OverallStats/Referrers";
 import TopOERBooks from "../../Components/OverallStats/TopTenBooks";
+import FacultyStats from "../../Components/OverallStats/StatsByFaculty";
 import HotMap from "../../Components/OverallStats/HotMap";
 import "./Home.scss"
 
@@ -23,8 +24,9 @@ const HomePage = ({
   return (
     <Box className="main-container" sx={{ mt: 15, p: 3, pb: bottomControlsApplied ? 15 : '300px' }}>
       <Typography variant="h4" sx={{ textAlign: "center" }}>Overall Statistics</Typography>
-      <TopControls onApply={handleApplyTopControls} setFadeIn={setFadeIn} />
+      <TopControls onApply={handleApplyTopControls} setFadeIn={setFadeIn}/>
       <OverallStats stats={overallStats} />
+      <FacultyStats statsByFaculty={overallStats.stats_by_faculty} />
       <Box sx={{ mt: 2, height: '400px' }}>
               <LineChart chartData={monthlyOverallTrafficData} height="100%" />
       </Box>

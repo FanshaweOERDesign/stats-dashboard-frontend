@@ -25,6 +25,7 @@
     "rsuite": "^5.66.0",
     "sass": "^1.77.8",
     "sass-loader": "^16.0.0",
+    "stats-dashboard-frontend": "file:",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
