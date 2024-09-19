@@ -12,7 +12,7 @@ const FacultyStats = ({ statsByFaculty }) => {
     setSelectedFaculty(event.target.value);
   };
 
-  const facultyOptions = Object.keys(statsByFaculty);
+  const facultyOptions = Object.keys(statsByFaculty).sort();
 
   const facultyData = statsByFaculty[selectedFaculty] || {};
 
