@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Box, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 import './Header.scss';
 
-const Header = ({ isLoggedIn, setIsLoggedIn }) => {
+const Header = ({ isLoggedIn, logout }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    logout();
     navigate('/login');
   };
 
@@ -57,7 +58,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
             >
               <MenuItem onClick={handleHome}>Home</MenuItem>
               <MenuItem onClick={handleEditBooks}>Edit Books</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Export CSV</MenuItem>
+              {/* <MenuItem onClick={handleMenuClose}>Export CSV</MenuItem> */}
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </>

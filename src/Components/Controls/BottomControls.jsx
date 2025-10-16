@@ -57,7 +57,7 @@ const BottomControls = ({ onApply, books }) => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8384/get-stats', {
+      const response = await fetch('/get-stats', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,14 +133,14 @@ const BottomControls = ({ onApply, books }) => {
               label="Book Title"
             >
               {books.map((book, index) => (
-                <MenuItem key={index} value={book}>
-                  {book}
+                <MenuItem key={index} value={book?.title}>
+                  {book?.title}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
         </Box>
-        <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {/* <Box sx={{ mt: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <TextField
             label="Textbook Cost"
             type="number"
@@ -159,7 +159,7 @@ const BottomControls = ({ onApply, books }) => {
             onChange={handleSliderChange}
             sx={{ width: '300px' }}
           />
-        </Box>
+        </Box> */}
         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center', width: '100%' }}>
           <Button variant="contained" color="primary" onClick={handleApply} disabled={loading}>
             Apply

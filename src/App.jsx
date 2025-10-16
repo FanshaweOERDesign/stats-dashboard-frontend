@@ -9,6 +9,7 @@ import LoginPage from "./Pages/Login/Login";
 import EditBookPage from "./Pages/EditBooks/EditBooks";
 import { lightTheme, darkTheme } from "./Utils/Theme";
 import "./App.scss";
+import useAuth from "./Hooks/useAuth";
 
 function App() {
   const [isLightTheme, setIsLightTheme] = useState(true);
@@ -45,7 +46,7 @@ function App() {
   });
   const [books, setBooks] = useState([]);
   const [bottomControlsApplied, setBottomControlsApplied] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, login, logout } = useAuth();
 
   const handleApplyTopControls = (stats) => {
     setOverallMonthlyTrafficData(stats.daily_stats);
@@ -82,7 +83,7 @@ function App() {
     } else {
       const fetchBooks = async () => {
         try {
-          const response = await fetch('http://localhost:8384/get-titles');
+          const response = await fetch('/get-oers');
           const titles = await response.json();
           setBooks(titles);
           sessionStorage.setItem('cachedBooks', JSON.stringify(titles)); 
@@ -101,7 +102,7 @@ function App() {
     <ThemeProvider theme={isLightTheme ? lightTheme : darkTheme}>
       <CssBaseline />
         <Router>
-          <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <Header isLoggedIn={isLoggedIn} logout={logout} />
           <Routes>
           <Route 
               path="/" 
@@ -121,17 +122,11 @@ function App() {
             />
             <Route 
               path="/login" 
-              element={<LoginPage onLogin={setIsLoggedIn} />} 
+              element={<LoginPage login={login} />} 
             />
              <Route 
               path="/edit-books" 
-              element={
-                isLoggedIn ? (
-                  <EditBookPage/>
-                ) : (
-                  <Navigate to="/login" />
-                )
-              } 
+              element={<EditBookPage isLoggedIn={isLoggedIn} logout={logout} />} 
             />
           </Routes>
           <Footer isLightTheme={isLightTheme} toggleTheme={toggleTheme} />

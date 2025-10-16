@@ -18,7 +18,7 @@ const TopOERBooks = ({ books }) => {
           <ListItem key={index} divider>
             <ListItemText
               primary={book.title}
-              secondary={`Total Visitors: ${book.total_visitors}`}
+              secondary={`Total Visitors: ${parseInt(book.total_visitors).toLocaleString()}`}
             />
           </ListItem>
         ))}
